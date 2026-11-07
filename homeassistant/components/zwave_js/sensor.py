@@ -70,6 +70,8 @@ from homeassistant.const import (
     UnitOfRatio,
     UnitOfTemperature,
     UnitOfTime,
+    UnitOfVolume,
+    UnitOfVolumeFlowRate,
 )
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError
@@ -94,6 +96,7 @@ from .const import (
     ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY,
     ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL,
     ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING,
+    ENTITY_DESC_KEY_GAS,
     ENTITY_DESC_KEY_HUMIDITY,
     ENTITY_DESC_KEY_ILLUMINANCE,
     ENTITY_DESC_KEY_MEASUREMENT,
@@ -105,6 +108,8 @@ from .const import (
     ENTITY_DESC_KEY_TOTAL_INCREASING,
     ENTITY_DESC_KEY_UV_INDEX,
     ENTITY_DESC_KEY_VOLTAGE,
+    ENTITY_DESC_KEY_VOLUME_FLOW_RATE,
+    ENTITY_DESC_KEY_WATER,
     LOGGER,
 )
 from .discovery_data_template import (
@@ -182,6 +187,33 @@ ENTITY_DESCRIPTION_KEY_UNIT_MAP: dict[tuple[str, str], SensorEntityDescription] 
         device_class=SensorDeviceClass.POWER,
         state_class=SensorStateClass.MEASUREMENT,
         native_unit_of_measurement=UnitOfPower.WATT,
+    ),
+    (ENTITY_DESC_KEY_POWER, UnitOfPower.KILO_WATT): SensorEntityDescription(
+        key=ENTITY_DESC_KEY_POWER,
+        device_class=SensorDeviceClass.POWER,
+        state_class=SensorStateClass.MEASUREMENT,
+        native_unit_of_measurement=UnitOfPower.KILO_WATT,
+    ),
+    (ENTITY_DESC_KEY_GAS, UnitOfVolume.CUBIC_METERS): SensorEntityDescription(
+        key=ENTITY_DESC_KEY_GAS,
+        device_class=SensorDeviceClass.GAS,
+        state_class=SensorStateClass.TOTAL_INCREASING,
+        native_unit_of_measurement=UnitOfVolume.CUBIC_METERS,
+    ),
+    (ENTITY_DESC_KEY_WATER, UnitOfVolume.CUBIC_METERS): SensorEntityDescription(
+        key=ENTITY_DESC_KEY_WATER,
+        device_class=SensorDeviceClass.WATER,
+        state_class=SensorStateClass.TOTAL_INCREASING,
+        native_unit_of_measurement=UnitOfVolume.CUBIC_METERS,
+    ),
+    (
+        ENTITY_DESC_KEY_VOLUME_FLOW_RATE,
+        UnitOfVolumeFlowRate.CUBIC_METERS_PER_HOUR,
+    ): SensorEntityDescription(
+        key=ENTITY_DESC_KEY_VOLUME_FLOW_RATE,
+        device_class=SensorDeviceClass.VOLUME_FLOW_RATE,
+        state_class=SensorStateClass.MEASUREMENT,
+        native_unit_of_measurement=UnitOfVolumeFlowRate.CUBIC_METERS_PER_HOUR,
     ),
     (ENTITY_DESC_KEY_POWER_FACTOR, UnitOfRatio.PERCENTAGE): SensorEntityDescription(
         key=ENTITY_DESC_KEY_POWER_FACTOR,

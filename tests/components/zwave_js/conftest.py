@@ -530,6 +530,12 @@ def indicator_test_state_fixture() -> dict[str, Any]:
     return load_json_object_fixture("indicator_test_state.json", DOMAIN)
 
 
+@pytest.fixture(name="meter_table_monitor_state")
+def meter_table_monitor_state_fixture() -> dict[str, Any]:
+    """Load node with Meter Table Monitor CC state fixture data."""
+    return load_json_object_fixture("meter_table_monitor_state.json", DOMAIN)
+
+
 @pytest.fixture(name="energy_production_state")
 def energy_production_state_fixture() -> dict[str, Any]:
     """Load a mock node with energy production CC state fixture data."""
@@ -1456,6 +1462,14 @@ def zooz_zse43_fixture(client: MagicMock, zooz_zse43_state: NodeDataType) -> Nod
 def indicator_test_fixture(client, indicator_test_state) -> Node:
     """Mock a indicator CC test node."""
     node = Node(client, indicator_test_state)
+    client.driver.controller.nodes[node.node_id] = node
+    return node
+
+
+@pytest.fixture(name="meter_table_monitor")
+def meter_table_monitor_fixture(client, meter_table_monitor_state) -> Node:
+    """Mock a node with Meter Table Monitor CC."""
+    node = Node(client, meter_table_monitor_state)
     client.driver.controller.nodes[node.node_id] = node
     return node
 

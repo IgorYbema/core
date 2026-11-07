@@ -957,6 +957,17 @@ DISCOVERY_SCHEMAS = [
         ),
         data_template=NumericSensorDataTemplate(),
     ),
+    # Meter sensors for Meter Table Monitor CC
+    ZWaveDiscoverySchema(
+        platform=Platform.SENSOR,
+        hint="numeric_sensor",
+        primary_value=ZWaveValueDiscoverySchema(
+            command_class={CommandClass.METER_TBL_MONITOR},
+            type={ValueType.NUMBER},
+            property={VALUE_PROPERTY},
+        ),
+        data_template=NumericSensorDataTemplate(),
+    ),
     # number for Indicator CC (exclude property keys 3-5)
     ZWaveDiscoverySchema(
         platform=Platform.NUMBER,

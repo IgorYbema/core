@@ -6,6 +6,7 @@ from unittest.mock import patch
 
 import pytest
 from pytest_homeassistant.common import MockConfigEntry, async_fire_time_changed
+from syrupy.assertion import SnapshotAssertion
 from zwave_js_server.const.command_class.meter import MeterType
 from zwave_js_server.event import Event
 from zwave_js_server.exceptions import FailedZWaveCommand
@@ -1384,3 +1385,27 @@ async def test_energy_production_sensors(
 
         for attr in state_data.get("missing_attributes", []):
             assert attr not in state.attributes
+
+
+METER_TABLE_MONITOR_ENTITIES = [
+    pytest.param("sensor.node_2_gas_import_flow", id="gas_flow"),
+    pytest.param("sensor.node_2_gas_import_volume", id="gas_volume"),
+    pytest.param("sensor.node_2_heating_import_scale_8", id="heating_unknown_scale"),
+    pytest.param("sensor.node_2_twin_e_electric_export_energy", id="export_energy"),
+    pytest.param("sensor.node_2_twin_e_electric_export_power", id="export_power"),
+    pytest.param("sensor.node_2_twin_e_electric_import_energy", id="import_energy"),
+    pytest.param("sensor.node_2_twin_e_electric_import_power", id="import_power"),
+]
+
+
+@pytest.mark.usefixtures("meter_table_monitor", "integration")
+@pytest.mark.parametrize("entity_id", METER_TABLE_MONITOR_ENTITIES)
+async def test_meter_table_monitor_sensors(
+    hass: HomeAssistant,
+    entity_registry: er.EntityRegistry,
+    snapshot: SnapshotAssertion,
+    entity_id: str,
+) -> None:
+    """Test sensors for Meter Table Monitor CC."""
+    assert entity_registry.async_get(entity_id) == snapshot(name="entry")
+    assert hass.states.get(entity_id) == snapshot(name="state")

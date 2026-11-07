@@ -1,0 +1,436 @@
+{
+  "nodeId": 2,
+  "index": 0,
+  "status": 4,
+  "ready": true,
+  "isListening": true,
+  "isRouting": true,
+  "isSecure": false,
+  "interviewAttempts": 1,
+  "endpoints": [
+    {
+      "nodeId": 2,
+      "index": 0,
+      "deviceClass": {
+        "basic": {
+          "key": 4,
+          "label": "Routing Slave"
+        },
+        "generic": {
+          "key": 6,
+          "label": "Appliance"
+        },
+        "specific": {
+          "key": 1,
+          "label": "General Appliance"
+        },
+        "mandatorySupportedCCs": [],
+        "mandatoryControlledCCs": []
+      },
+      "commandClasses": [
+        {
+          "id": 134,
+          "name": "Version",
+          "version": 1,
+          "isSecure": false
+        }
+      ]
+    },
+    {
+      "nodeId": 2,
+      "index": 1,
+      "deviceClass": {
+        "basic": {
+          "key": 4,
+          "label": "Routing Slave"
+        },
+        "generic": {
+          "key": 6,
+          "label": "Appliance"
+        },
+        "specific": {
+          "key": 1,
+          "label": "General Appliance"
+        },
+        "mandatorySupportedCCs": [],
+        "mandatoryControlledCCs": []
+      },
+      "commandClasses": [
+        {
+          "id": 61,
+          "name": "Meter Table Monitor",
+          "version": 3,
+          "isSecure": false
+        }
+      ]
+    },
+    {
+      "nodeId": 2,
+      "index": 4,
+      "deviceClass": {
+        "basic": {
+          "key": 4,
+          "label": "Routing Slave"
+        },
+        "generic": {
+          "key": 6,
+          "label": "Appliance"
+        },
+        "specific": {
+          "key": 1,
+          "label": "General Appliance"
+        },
+        "mandatorySupportedCCs": [],
+        "mandatoryControlledCCs": []
+      },
+      "commandClasses": [
+        {
+          "id": 61,
+          "name": "Meter Table Monitor",
+          "version": 3,
+          "isSecure": false
+        }
+      ]
+    },
+    {
+      "nodeId": 2,
+      "index": 5,
+      "deviceClass": {
+        "basic": {
+          "key": 4,
+          "label": "Routing Slave"
+        },
+        "generic": {
+          "key": 6,
+          "label": "Appliance"
+        },
+        "specific": {
+          "key": 1,
+          "label": "General Appliance"
+        },
+        "mandatorySupportedCCs": [],
+        "mandatoryControlledCCs": []
+      },
+      "commandClasses": [
+        {
+          "id": 61,
+          "name": "Meter Table Monitor",
+          "version": 3,
+          "isSecure": false
+        }
+      ]
+    },
+    {
+      "nodeId": 2,
+      "index": 8,
+      "deviceClass": {
+        "basic": {
+          "key": 4,
+          "label": "Routing Slave"
+        },
+        "generic": {
+          "key": 6,
+          "label": "Appliance"
+        },
+        "specific": {
+          "key": 1,
+          "label": "General Appliance"
+        },
+        "mandatorySupportedCCs": [],
+        "mandatoryControlledCCs": []
+      },
+      "commandClasses": [
+        {
+          "id": 61,
+          "name": "Meter Table Monitor",
+          "version": 3,
+          "isSecure": false
+        }
+      ]
+    }
+  ],
+  "values": [
+    {
+      "endpoint": 0,
+      "commandClass": 134,
+      "commandClassName": "Version",
+      "property": "firmwareVersions",
+      "propertyName": "firmwareVersions",
+      "ccVersion": 1,
+      "metadata": {
+        "type": "string[]",
+        "readable": true,
+        "writeable": false,
+        "label": "Z-Wave chip firmware versions",
+        "stateful": true,
+        "secret": false
+      }
+    },
+    {
+      "endpoint": 0,
+      "commandClass": 134,
+      "commandClassName": "Version",
+      "property": "libraryType",
+      "propertyName": "libraryType",
+      "ccVersion": 1,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Library type",
+        "states": {
+          "0": "Unknown",
+          "1": "Static Controller",
+          "2": "Controller",
+          "3": "Enhanced Slave",
+          "4": "Slave",
+          "5": "Installer",
+          "6": "Routing Slave",
+          "7": "Bridge Controller",
+          "8": "Device under Test",
+          "9": "N/A",
+          "10": "AV Remote",
+          "11": "AV Device"
+        },
+        "stateful": true,
+        "secret": false
+      }
+    },
+    {
+      "endpoint": 0,
+      "commandClass": 134,
+      "commandClassName": "Version",
+      "property": "protocolVersion",
+      "propertyName": "protocolVersion",
+      "ccVersion": 1,
+      "metadata": {
+        "type": "string",
+        "readable": true,
+        "writeable": false,
+        "label": "Z-Wave protocol version",
+        "stateful": true,
+        "secret": false
+      }
+    },
+    {
+      "endpoint": 1,
+      "commandClass": 61,
+      "commandClassName": "Meter Table Monitor",
+      "property": "value",
+      "propertyKey": 131344,
+      "propertyName": "value",
+      "propertyKeyName": "Gas_Import_dataset_16",
+      "ccVersion": 3,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Gas import: Volume",
+        "ccSpecific": {
+          "meterType": 2,
+          "rateType": 1,
+          "dataset": 16,
+          "scale": 0
+        },
+        "stateful": true,
+        "secret": false,
+        "unit": "m³"
+      },
+      "value": 1419.755
+    },
+    {
+      "endpoint": 1,
+      "commandClass": 61,
+      "commandClassName": "Meter Table Monitor",
+      "property": "value",
+      "propertyKey": 131345,
+      "propertyName": "value",
+      "propertyKeyName": "Gas_Import_dataset_17",
+      "ccVersion": 3,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Gas import: Flow",
+        "ccSpecific": {
+          "meterType": 2,
+          "rateType": 1,
+          "dataset": 17,
+          "scale": 8
+        },
+        "stateful": true,
+        "secret": false,
+        "unit": "m³/h"
+      },
+      "value": 0.123
+    },
+    {
+      "endpoint": 4,
+      "commandClass": 61,
+      "commandClassName": "Meter Table Monitor",
+      "property": "value",
+      "propertyKey": 262416,
+      "propertyName": "value",
+      "propertyKeyName": "Twin-E electric_Import_dataset_16",
+      "ccVersion": 3,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Twin-E electric import: Energy",
+        "ccSpecific": {
+          "meterType": 4,
+          "rateType": 1,
+          "dataset": 16,
+          "scale": 0
+        },
+        "stateful": true,
+        "secret": false,
+        "unit": "kWh"
+      },
+      "value": 7322.781
+    },
+    {
+      "endpoint": 4,
+      "commandClass": 61,
+      "commandClassName": "Meter Table Monitor",
+      "property": "value",
+      "propertyKey": 262420,
+      "propertyName": "value",
+      "propertyKeyName": "Twin-E electric_Import_dataset_20",
+      "ccVersion": 3,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Twin-E electric import: Power",
+        "ccSpecific": {
+          "meterType": 4,
+          "rateType": 1,
+          "dataset": 20,
+          "scale": 7
+        },
+        "stateful": true,
+        "secret": false,
+        "unit": "kW"
+      },
+      "value": 5.04
+    },
+    {
+      "endpoint": 5,
+      "commandClass": 61,
+      "commandClassName": "Meter Table Monitor",
+      "property": "value",
+      "propertyKey": 262672,
+      "propertyName": "value",
+      "propertyKeyName": "Twin-E electric_Export_dataset_16",
+      "ccVersion": 3,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Twin-E electric export: Energy",
+        "ccSpecific": {
+          "meterType": 4,
+          "rateType": 2,
+          "dataset": 16,
+          "scale": 0
+        },
+        "stateful": true,
+        "secret": false,
+        "unit": "kWh"
+      },
+      "value": 2806.851
+    },
+    {
+      "endpoint": 5,
+      "commandClass": 61,
+      "commandClassName": "Meter Table Monitor",
+      "property": "value",
+      "propertyKey": 262676,
+      "propertyName": "value",
+      "propertyKeyName": "Twin-E electric_Export_dataset_20",
+      "ccVersion": 3,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Twin-E electric export: Power",
+        "ccSpecific": {
+          "meterType": 4,
+          "rateType": 2,
+          "dataset": 20,
+          "scale": 7
+        },
+        "stateful": true,
+        "secret": false,
+        "unit": "kW"
+      },
+      "value": 0.0
+    },
+    {
+      "endpoint": 8,
+      "commandClass": 61,
+      "commandClassName": "Meter Table Monitor",
+      "property": "value",
+      "propertyKey": 524560,
+      "propertyName": "value",
+      "propertyKeyName": "Heating_Import_dataset_16",
+      "ccVersion": 3,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Heating import: Scale 8",
+        "ccSpecific": {
+          "meterType": 8,
+          "rateType": 1,
+          "dataset": 16,
+          "scale": 8
+        },
+        "stateful": true,
+        "secret": false
+      },
+      "value": 12.5
+    }
+  ],
+  "isFrequentListening": false,
+  "maxDataRate": 100000,
+  "supportedDataRates": [
+    40000,
+    9600,
+    100000
+  ],
+  "protocolVersion": 3,
+  "supportsBeaming": true,
+  "supportsSecurity": false,
+  "nodeType": 1,
+  "deviceClass": {
+    "basic": {
+      "key": 4,
+      "label": "Routing Slave"
+    },
+    "generic": {
+      "key": 6,
+      "label": "Appliance"
+    },
+    "specific": {
+      "key": 1,
+      "label": "General Appliance"
+    },
+    "mandatorySupportedCCs": [],
+    "mandatoryControlledCCs": []
+  },
+  "interviewStage": "Complete",
+  "statistics": {
+    "commandsTX": 10,
+    "commandsRX": 7,
+    "commandsDroppedRX": 0,
+    "commandsDroppedTX": 0,
+    "timeoutResponse": 1,
+    "rtt": 84.8
+  },
+  "highestSecurityClass": -1,
+  "isControllerNode": false,
+  "keepAwake": false
+}

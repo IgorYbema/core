@@ -138,6 +138,7 @@ from .const import (
     ENTITY_DESC_KEY_ENERGY_PRODUCTION_TODAY,
     ENTITY_DESC_KEY_ENERGY_PRODUCTION_TOTAL,
     ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING,
+    ENTITY_DESC_KEY_GAS,
     ENTITY_DESC_KEY_HUMIDITY,
     ENTITY_DESC_KEY_ILLUMINANCE,
     ENTITY_DESC_KEY_MEASUREMENT,
@@ -149,6 +150,8 @@ from .const import (
     ENTITY_DESC_KEY_TOTAL_INCREASING,
     ENTITY_DESC_KEY_UV_INDEX,
     ENTITY_DESC_KEY_VOLTAGE,
+    ENTITY_DESC_KEY_VOLUME_FLOW_RATE,
+    ENTITY_DESC_KEY_WATER,
 )
 from .models import BaseDiscoverySchemaDataTemplate, ZwaveValueID
 
@@ -204,6 +207,11 @@ METER_UNIT_MAP: dict[str, list[MeterScaleType]] = {
     UnitOfElectricPotential.VOLT: METER_UNIT_VOLT,
     UnitOfPower.WATT: METER_UNIT_WATT,
 }
+
+# Meter Table Monitor CC: Z-Wave JS sets the unit of each value. Volumes
+# also need the meter type to tell gas from water.
+METER_TABLE_TYPE_GAS = 0x02
+METER_TABLE_TYPE_WATER = 0x03
 
 MULTILEVEL_SENSOR_UNIT_MAP: dict[str, list[MultilevelSensorScaleType]] = {
     UnitOfElectricCurrent.AMPERE: SENSOR_UNIT_AMPERE,
@@ -382,6 +390,33 @@ class NumericSensorDataTemplate(BaseDiscoverySchemaDataTemplate):
                 ),
                 unit,
             )
+
+        if value.command_class == CommandClass.METER_TBL_MONITOR:
+            meter_type = (value.metadata.cc_specific or {}).get("meterType")
+            match value.metadata.unit:
+                case UnitOfEnergy.KILO_WATT_HOUR:
+                    return NumericSensorDataTemplateData(
+                        ENTITY_DESC_KEY_ENERGY_TOTAL_INCREASING,
+                        UnitOfEnergy.KILO_WATT_HOUR,
+                    )
+                case UnitOfPower.KILO_WATT:
+                    return NumericSensorDataTemplateData(
+                        ENTITY_DESC_KEY_POWER, UnitOfPower.KILO_WATT
+                    )
+                case UnitOfVolume.CUBIC_METERS if meter_type == METER_TABLE_TYPE_GAS:
+                    return NumericSensorDataTemplateData(
+                        ENTITY_DESC_KEY_GAS, UnitOfVolume.CUBIC_METERS
+                    )
+                case UnitOfVolume.CUBIC_METERS if meter_type == METER_TABLE_TYPE_WATER:
+                    return NumericSensorDataTemplateData(
+                        ENTITY_DESC_KEY_WATER, UnitOfVolume.CUBIC_METERS
+                    )
+                case UnitOfVolumeFlowRate.CUBIC_METERS_PER_HOUR:
+                    return NumericSensorDataTemplateData(
+                        ENTITY_DESC_KEY_VOLUME_FLOW_RATE,
+                        UnitOfVolumeFlowRate.CUBIC_METERS_PER_HOUR,
+                    )
+            return NumericSensorDataTemplateData()
 
         if value.command_class == CommandClass.SENSOR_MULTILEVEL:
             try:
